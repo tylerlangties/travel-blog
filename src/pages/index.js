@@ -1,7 +1,9 @@
 import React from 'react'
 import Layout from '../components/layout'
 import styled from 'styled-components'
-import PostListing from '../components/Posts/PostLosting';
+import PostListing from '../components/Posts/PostLosting'
+import FeaturedStories from '../components/Posts/FeaturedStories'
+import Map from '../components/Map'
 
 const Featured = styled.div`
 margin-top: 3rem;
@@ -24,6 +26,14 @@ hr:after {
 }
 `;
 
+const Masonry = styled.div`    
+  column-count: 2;
+  column-gap: 1em;
+  @media(max-width: 960px){
+    column-count: 1;
+  }
+`;
+
 const IndexPage = ({data}) => (
   <Layout>
     <h1>Hi people</h1>
@@ -31,10 +41,17 @@ const IndexPage = ({data}) => (
     <Featured>
     <h3>Featured Story</h3>
     <hr/>
-    {data.allContentfulBlogPost.edges.map(({node}) => {
+    {data.allContentfulFeaturedPost.edges.map(({node}) => {
       return <PostListing key={node.id} post={node} />
     })}
+    <h3>Recent Stories</h3>
+    <hr/>
     </Featured>
+    <Masonry>
+    {data.allContentfulBlogPost.edges.map(({node}) => {
+      return <FeaturedStories key={node.id} posts={node} />
+    })}
+    </Masonry>
   </Layout>
 )
 
@@ -42,29 +59,55 @@ export default IndexPage
 
 export const query = graphql`
 query Featured{
-  allContentfulBlogPost {
-    edges {
-      node {
+  allContentfulFeaturedPost{
+    edges{
+      node{
         id
         title
-        featuredImage {
-          id
-          title
-          fluid(maxWidth: 2000){
+        createdAt(formatString: "MMMM DD, YYYY")
+        slug
+        location{
+          lon
+          lat
+        }
+        featuredImage{
+          fluid(maxWidth: 2500){
             src
-            sizes
           }
         }
-        slug
-        createdAt(formatString: "MMMM DD, YYYY")
-        body {
+        body{
           childMarkdownRemark{
             html
             excerpt(pruneLength: 300)
-        	}
+          }
         }
       }
     }
-  } 
+  }
+  allContentfulBlogPost{
+    edges{
+      node{
+        id
+        title
+        createdAt(formatString: "MMMM DD, YYYY")
+        slug
+        location{
+          lon
+          lat
+        }
+        featuredImage{
+          fluid(maxWidth: 2500){
+            src
+          }
+        }
+        body{
+          childMarkdownRemark{
+            html
+            excerpt(pruneLength: 300)
+          }
+        }
+      }
+    }
+  }
 }
 `;

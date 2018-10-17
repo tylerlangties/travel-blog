@@ -4,7 +4,8 @@ import styled from 'styled-components'
 
 const Style = styled.div`
     display: flex;
-    margin-top: 3rem;
+    margin: 3rem 0;
+    padding: 0;
     flex-direction: row-reverse;
     @media (max-width: 960px) {
         flex-direction: column-reverse;
@@ -27,6 +28,9 @@ const Style = styled.div`
             width: 100%;
         }
     }
+    h1{
+        font-size: 4rem;
+    }
     h5{
         width: 60%;
         margin: 0;
@@ -38,6 +42,11 @@ const Style = styled.div`
 const Imgcont = styled.div`
     width: 100%;
     margin: 0;
+    border-radius: 3px;
+    @media(max-width: 960px){
+        width: 75%;
+        margin: auto;
+    }
 `;
 
 const PostListing = ({post}) => (
@@ -52,7 +61,7 @@ const PostListing = ({post}) => (
     <Imgcont>
     <img src={post.featuredImage.fluid.src} />
     </Imgcont>
-    </Style>
+</Style>
 );
 
 export default PostListing;
