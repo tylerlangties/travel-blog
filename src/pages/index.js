@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { Component } from 'react'
 import Layout from '../components/layout'
 import styled from 'styled-components'
 import PostListing from '../components/Posts/PostLosting'
 import FeaturedStories from '../components/Posts/FeaturedStories'
-import Map from '../components/Map'
+
 
 const Featured = styled.div`
 margin-top: 3rem;
@@ -34,28 +34,32 @@ const Masonry = styled.div`
   }
 `;
 
-const IndexPage = ({data}) => (
+export default class IndexPage extends Component {
+render(){
+  
+  return (
+
   <Layout>
+    
     <h1>Hi people</h1>
     <p>Welcome to the blah blah.</p>
     <Featured>
     <h3>Featured Story</h3>
     <hr/>
-    {data.allContentfulFeaturedPost.edges.map(({node}) => {
+    {this.props.data.allContentfulFeaturedPost.edges.map(({node}) => {
       return <PostListing key={node.id} post={node} />
     })}
     <h3>Recent Stories</h3>
     <hr/>
     </Featured>
     <Masonry>
-    {data.allContentfulBlogPost.edges.map(({node}) => {
+    {this.props.data.allContentfulBlogPost.edges.map(({node}) => {
       return <FeaturedStories key={node.id} posts={node} />
     })}
     </Masonry>
   </Layout>
-)
+  )}}
 
-export default IndexPage
 
 export const query = graphql`
 query Featured{

@@ -10,10 +10,7 @@ const Style = styled.div`
     @media (max-width: 960px) {
         flex-direction: column-reverse;
     }
-    img{
-        width: 100%;
-        height: 100%
-    }
+    
     .content{
         display: flex;
         flex-direction: column;
@@ -57,6 +54,7 @@ const PostListing = ({post}) => (
         {post.createdAt}
     </p>
     <h5>{post.body.childMarkdownRemark.excerpt}</h5>
+    <img src="http://image.maps.api.here.com/mia/1.6/?app_code=N_0IfIire5APTLyDGImpEQ&app_id=FX7zKNt3qZxRE3QO99vU"></img>
     </div>
     <Imgcont>
     <img src={post.featuredImage.fluid.src} />

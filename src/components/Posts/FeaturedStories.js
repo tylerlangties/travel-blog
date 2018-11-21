@@ -13,7 +13,7 @@ const MasonryBrick = styled.div`
 
 const FeaturedStories = ({posts}) => (
    <MasonryBrick>
-    <h1><Link to="/">{posts.title}</Link></h1>
+    <h1><Link to={posts.slug}>{posts.title}</Link></h1>
     <p>
         {posts.createdAt}
     </p>
