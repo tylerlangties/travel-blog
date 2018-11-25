@@ -6,15 +6,25 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   box-sizing: border-box;
+  flex-direction: column;
+`;
+
+const Title = styled.div`
+  display: flex;
+  margin-top: .5rem;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Nav = styled.nav`
   max-width: 960px;
   box-sizing: border-box;
   width: 100vw;
+  margin: 0 auto;
   padding: 1.45rem 1.0875rem;
   display: flex;
   justify-content: center; 
+  flex-direction: column;
   ul{
     list-style: none;
     margin: 0;

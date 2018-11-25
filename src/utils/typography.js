@@ -1,6 +1,6 @@
-import Typography from "typography"
-import altonTheme from "typography-theme-alton"
+import Typography from 'typography'
+import wordpressKubrickTheme from 'typography-theme-wordpress-kubrick'
 
-const typography = new Typography(altonTheme)
+const typography = new Typography(wordpressKubrickTheme)
 
 export default typography

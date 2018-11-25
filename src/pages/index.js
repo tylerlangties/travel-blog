@@ -27,24 +27,20 @@ hr:after {
 `;
 
 const Masonry = styled.div`    
-  column-count: 2;
-  column-gap: 1em;
-  @media(max-width: 960px){
-    column-count: 1;
-  }
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
 `;
 
 export default class IndexPage extends Component {
 render(){
   
   return (
-
   <Layout>
     
-    <h1>Hi people</h1>
-    <p>Welcome to the blah blah.</p>
     <Featured>
-    <h3>Featured Story</h3>
+    <h1>Featured Story</h1>
     <hr/>
     {this.props.data.allContentfulFeaturedPost.edges.map(({node}) => {
       return <PostListing key={node.id} post={node} />
@@ -70,6 +66,7 @@ query Featured{
         title
         createdAt(formatString: "MMMM DD, YYYY")
         slug
+        tags
         location{
           lon
           lat
@@ -95,6 +92,8 @@ query Featured{
         title
         createdAt(formatString: "MMMM DD, YYYY")
         slug
+        tags
+        authors
         location{
           lon
           lat
@@ -107,7 +106,7 @@ query Featured{
         body{
           childMarkdownRemark{
             html
-            excerpt(pruneLength: 300)
+            excerpt(pruneLength: 200)
           }
         }
       }
