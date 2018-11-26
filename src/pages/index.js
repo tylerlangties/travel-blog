@@ -67,6 +67,7 @@ query Featured{
         createdAt(formatString: "MMMM DD, YYYY")
         slug
         tags
+        readtime
         location{
           lon
           lat
@@ -93,7 +94,11 @@ query Featured{
         createdAt(formatString: "MMMM DD, YYYY")
         slug
         tags
-        authors
+        readtime
+        authors{
+          authorName
+          id
+        }
         location{
           lon
           lat

@@ -31,6 +31,14 @@ const Style = styled.div`
             width: 100%
         }
     }
+    h3 {
+    margin: .2rem 0 1rem;
+    letter-spacing: .5px;
+    text-align: left;
+        line-height: 20px;
+        display: flex;
+        justify-content: space-between;
+  }
     h4 {
         width: 85%;
         margin: 0;
@@ -80,12 +88,15 @@ const PostListing = ({post}) => (
 <Style>
     <div className="content">
     <h1><Link to='/featured'>{post.title}</Link></h1>
+    
     <p>
         {post.createdAt}
     </p>
     <h4>{post.body.childMarkdownRemark.excerpt}</h4>
+    
     <br/>
     <h4><Link to="/featured"><strong>See More..</strong></Link><span>{post.tags}</span></h4>
+    
     <FormatMap>
     <Map/>
     </FormatMap>
