@@ -7,6 +7,7 @@ const Wrapper = styled.div`
   justify-content: center;
   box-sizing: border-box;
   flex-direction: column;
+  background-color: #15181b;
 `;
 
 const Title = styled.div`
@@ -17,37 +18,41 @@ const Title = styled.div`
 `;
 
 const Nav = styled.nav`
-  max-width: 960px;
+  max-width: 90vw;
   box-sizing: border-box;
   width: 100vw;
   margin: 0 auto;
   padding: 1.45rem 1.0875rem;
   display: flex;
-  justify-content: center; 
-  flex-direction: column;
-  ul{
-    list-style: none;
-    margin: 0;
-    justify-content: center;
+  justify-content: space-between; 
+  flex-direction: row;
+  align-items: center;
+  i {
+    font-size: 3rem;
+    
+  }
+  .links {
     display: flex;
-    li {
-      margin: 0 1rem;
-      i{
-        font-size: 3rem;
-        color: #0084b4;
-      }
+    flex-direction: row;
+    h2 {
+      margin: 1rem .5rem;
     }
   }
+    a { 
+    color: white;
+  }
+
 `;
 
 const Header = () => (
     <Wrapper>
       <Nav>
-      <ul>
-          <li><h2><Link to="/">Explore</Link></h2></li>
-          <li><Link to="/"><i className="fas fa-drafting-compass"></i></Link></li>
-          <li><h2><Link to ="/about">About</Link></h2></li>
-      </ul>
+      <Link to="/"><i className="fas fa-drafting-compass"></i></Link>
+      <div className="links">
+          <h2><Link to ="/about">About</Link></h2>
+          <h2><Link to="/">Explore</Link></h2>
+          </div>
+      
       </Nav>
     </Wrapper>
 )

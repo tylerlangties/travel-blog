@@ -7,7 +7,9 @@ const Style = styled.div`
     display: flex;
     margin: 3rem 0;
     padding: 0;
+    height: 550px;
     flex-direction: row-reverse;
+    justify-content: space-between;
     @media (max-width: 767px) {
         flex-direction: column-reverse;
     }
@@ -17,7 +19,8 @@ const Style = styled.div`
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        width: 100%;
+        height: 500px;
+        width: 45%;
         text-align: center;
         @media (max-width: 767px) {
             margin-top: 3rem;
@@ -42,11 +45,19 @@ const Style = styled.div`
     h4 {
         width: 85%;
         margin: 0;
-        
+        font-weight: 400;
+        font-size: 1.15rem;
         text-align: left;
-        line-height: 20px;
+        line-height: 2rem;
         display: flex;
         justify-content: space-between;
+        .blog-link {
+            background-color: #dd5039; /* RED */
+            border: none;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+        }
         @media (max-width: 767px) {
             width: 100%
         }
@@ -58,25 +69,14 @@ const Style = styled.div`
     }
 `;
 
-const FormatMap = styled.div`
-    display: flex;
-    align-items: flex-end;
-    padding-top: 4rem;
-    img {
-    width: 80%;
-    border: 2px solid white;
-    border-radius: 200px;
-    @media (max-width: 767px) {
-            width: 100%
-        }
-    }
-`;
 
 const Imgcont = styled.div`
-    object-fit: cover;
-    width: 75%;
+    width: 50%;
     img {
+    object-fit: cover;
+    width: 100%;
     border-radius: 3px;
+    height: 500px;
     }
     @media(max-width: 767px){
         width: 100%;
@@ -95,11 +95,8 @@ const PostListing = ({post}) => (
     <h4>{post.body.childMarkdownRemark.excerpt}</h4>
     
     <br/>
-    <h4><Link to="/featured"><strong>See More..</strong></Link><span>{post.tags}</span></h4>
+    <h4><Link to="/featured"><span className="blog-link">See More..</span></Link></h4>
     
-    <FormatMap>
-    <Map/>
-    </FormatMap>
     </div>
     <Imgcont>
     <img src={post.featuredImage.fluid.src} />

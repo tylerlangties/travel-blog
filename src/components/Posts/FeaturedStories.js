@@ -81,7 +81,9 @@ const FeaturedStories = ({ posts }) => (
 
     <h4>
       <Link to={posts.slug}>See More..</Link>
-      <span>{posts.tags}</span>
+      <span>{posts.tags.map(({ name, id }) => {
+        return <div key={id}><span>{name}</span></div>
+      })}</span>
     </h4>
     <h4>
       <i>{posts.createdAt}</i>

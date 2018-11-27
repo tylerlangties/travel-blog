@@ -11,18 +11,9 @@ hr {
     overflow: visible; /* For IE */
     padding: 0;
     border: none;
-    border-top: medium double #333;
-    color: #333;
+    color: #f5f5f5;
     text-align: center;
-}
-hr:after {
-  content: "§";
-  display: inline-block;
-  position: relative;
-  top: -0.7em;
-  font-size: 1.5em;
-  padding: 0 0.25em;
-  background: white;
+    opacity: 0.75;
 }
 `;
 
@@ -30,11 +21,50 @@ const Masonry = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  .load-more {
+    background-color: #dd5039; /* RED */
+    border: none;
+    color: white;
+    text-align: center;
+    font-size: 16px;
+    margin: 2.5rem 0 2rem;
+    text-transform: uppercase;
+    padding: 15px 32px;
+    transition: background-color 200ms ease;
+    &:hover {
+      cursor: pointer;
+      background-color: #F57460;
+    }
+  }
 
 `;
 
 export default class IndexPage extends Component {
-render(){
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      items: [],
+      visible: 3,
+      error: false
+    };
+
+    this.loadMore = this.loadMore.bind(this);
+  }
+
+  loadMore() {
+    this.setState((prev) => {
+      return {visible: prev.visible + 3};
+    });
+  }
+
+  componentDidMount() {
+    this.setState({
+      items: this.props.data.allContentfulBlogPost.edges
+    })
+  }
+
+  render(){
   
   return (
   <Layout>
@@ -45,14 +75,18 @@ render(){
     {this.props.data.allContentfulFeaturedPost.edges.map(({node}) => {
       return <PostListing key={node.id} post={node} />
     })}
-    <h3>Recent Stories</h3>
+    <h1>Recent Stories</h1>
     <hr/>
     </Featured>
     <Masonry>
-    {this.props.data.allContentfulBlogPost.edges.map(({node}) => {
-      return <FeaturedStories key={node.id} posts={node} />
+    {this.state.items.slice(0, this.state.visible).map((item) => {
+      return <FeaturedStories key={item.node.id} posts={item.node} />
     })}
+    {this.state.visible < this.state.items.length &&
+      <button onClick={this.loadMore} type="button" className="load-more">See more</button>
+    }
     </Masonry>
+    
   </Layout>
   )}}
 
@@ -66,7 +100,6 @@ query Featured{
         title
         createdAt(formatString: "MMMM DD, YYYY")
         slug
-        tags
         readtime
         location{
           lon
@@ -80,7 +113,7 @@ query Featured{
         body{
           childMarkdownRemark{
             html
-            excerpt(pruneLength: 300)
+            excerpt(pruneLength: 250)
           }
         }
       }
@@ -93,8 +126,10 @@ query Featured{
         title
         createdAt(formatString: "MMMM DD, YYYY")
         slug
-        tags
         readtime
+        tags {
+          name
+        }
         authors{
           authorName
           id
