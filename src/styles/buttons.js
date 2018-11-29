@@ -6,6 +6,7 @@ export const ButtonPrimary = styled.button`
     box-sizing: border-box;
     color: white;
     text-align: center;
+    max-width: 400px;
     width: 25vw;
     font-size: 16px;
     margin: 2rem auto 2rem;

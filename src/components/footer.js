@@ -4,8 +4,10 @@ import styled from "styled-components"
 import { ButtonPrimary } from '../styles/buttons';
 
 const FooterStyles = styled.div`
-    width: 100vw;
+    width: 100%;
     margin: 0;
+    overflow-x: hidden;
+    box-sizing: border-box;
     padding: 0;
     .footer__info {
         background-color: #15181b;
@@ -19,11 +21,13 @@ const FooterStyles = styled.div`
         flex-direction: column;
         h1 {
             font-size: 3rem;
+            color: #fff;
         }
         p {
             font-size: 1.5rem;
-            width: 60vw;
+            width: 460px;
             text-align: center;
+            line-height: 2.5rem;
             @media (max-width: 767px) {
                 width: 90vw;
             }
@@ -31,7 +35,6 @@ const FooterStyles = styled.div`
     }
     .footer__bottom {
         background-color: #fff;
-        height: 300px;
         color: #fff;
         margin: 0 auto;
         width: 100vw;
@@ -69,6 +72,7 @@ const FooterStyles = styled.div`
 `;
 
 const Footer = () => (
+    
   <FooterStyles>
       <div className="footer__info">
         <h1>About Title</h1>

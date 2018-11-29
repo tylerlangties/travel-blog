@@ -1,54 +1,46 @@
 import React, { Component } from 'react';
-import Map from '../components/Map';
 import Layout from '../components/layout';
 import styled from 'styled-components';
+import { HR } from '../styles/horizonalrule';
+import { Link } from 'gatsby';
 
-const HeaderStyles = styled.div`
-    h1 {
-        font-size: 4rem;
-    }
-    hr {
-        overflow: visible; /* For IE */
-        padding: 0;
-        border: none;
-        border-top: medium double #333;
-        color: #333;
-        margin: 4rem 0;
-        text-align: center;
-}
-    hr:after {
-        content: "§";
-        display: inline-block;
-        position: relative;
-        top: -0.7em;
-        font-size: 1.5em;
-        padding: 0 0.25em;
-        background: white;
-}
-`;
-
-const Main = styled.div`
+const PostWrapper = styled.div`
     display: flex;
     justify-content: center;
-`;
-
-const Blog = styled.div`
-    max-width: 720px;
-    font-size: 125%;
-    img {
-    border-radius: 3px;
-    max-width: 720px;
-    height: 500px;
-    object-fit: cover;
-    @media (max-width: 767px) {
+    flex-direction: column;
+    align-items: center;
+    hr {
+        max-width: 800px;
+    }
+    .postwrapper__title {
+        font-size: 4rem;
+    }
+    .postwrapper__inner {
+        max-width: 800px;
+        font-size: 125%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin: 1rem 0;
+        @media (max-width: 767px) {
         width: 90vw;
+        }
+        img {
+            border-radius: 3px;
+            width: 100%;
+            object-fit: cover;
+            @media (max-width: 767px) {
+            width: 90vw;
+            }
+        }
     }
-    }
-    @media (max-width: 767px) {
-        width: 90vw;
+    .bitch {
+        width: 100%;
+        object-fit: cover;
+        position: relative;
     }
 `;
-
 
 export default class PostPage extends Component {
 
@@ -56,19 +48,28 @@ render() {
     const { data } = this.props;
     return (
         <Layout>
-            <HeaderStyles>
+            <PostWrapper>
+
+                <h1 className="postwrapper__title">
+                    {data.contentfulBlogPost.title}
+                </h1>
+                
+                <span>{data.contentfulBlogPost.authors.map(({ authorName, id }) => {
+                    return <span key={id}>{authorName}</span>
+                    })} | {data.contentfulBlogPost.createdAt}
+                </span>
+                
+                <div className="postwrapper__inner">
+                <HR />
+                    <div dangerouslySetInnerHTML = {{
+                    __html: data.contentfulBlogPost.body.childMarkdownRemark.html
+                    }}/>
                     
-            <h1>{data.contentfulBlogPost.title}</h1>
-            <span>Author | {data.contentfulBlogPost.createdAt}</span>
-            <hr />
-            </HeaderStyles>
-            <Main>
-                <Blog>
-            <div dangerouslySetInnerHTML = {{
-            __html: data.contentfulBlogPost.body.childMarkdownRemark.html
-            }}/>
-            </Blog>
-            </Main>
+                </div>
+                <img className="bitch" src={data.contentfulBlogPost.featuredImage.fluid.src}/>
+                <Link to="/">Go back to the homepage</Link>
+                
+            </PostWrapper>
             
         </Layout>
         );
@@ -76,24 +77,27 @@ render() {
 }
 
 export const query = graphql`
-  query BlogPostQuery($slug: String!) {
+    query BlogPostQuery($slug: String!) {
     contentfulBlogPost(slug: {eq: $slug}) {
-      title
-      createdAt(formatString: "MMMM DD, YYYY")
-      featuredImage {
-      id
-      fluid {
-        src
-      }
-    }
-      body {
-        childMarkdownRemark {
-          html
+        title
+        createdAt(formatString: "MMMM DD, YYYY")
+        slug
+        authors{
+            authorName
         }
-      }
-      slug
-      id
+        id
+        featuredImage {
+            id
+            fluid (maxWidth: 2000) {
+                src
+            }
+        }
+        body {
+            childMarkdownRemark {
+                html
+            }
+        }
     }
-  }
+}
 `;
 

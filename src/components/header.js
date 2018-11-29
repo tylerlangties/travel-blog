@@ -10,13 +10,6 @@ const Wrapper = styled.div`
   background-color: #15181b;
 `;
 
-const Title = styled.div`
-  display: flex;
-  margin-top: .5rem;
-  justify-content: center;
-  align-items: center;
-`;
-
 const Nav = styled.nav`
   max-width: 90vw;
   box-sizing: border-box;

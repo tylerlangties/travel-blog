@@ -4,13 +4,14 @@ import styled from 'styled-components'
 
 const MasonryBrick = styled.div`
   display: flex;
+  position: relative;
   flex-direction: column;
   margin: 0 0 1em;
   border: 1px solid lightgrey;
   padding: 2rem;
   border-radius: 3px;
   h1 {
-    font-size: 2.5rem;
+    font-size: 2.25rem;
     text-transform: uppercase;
   }
   h1,
@@ -28,6 +29,8 @@ const MasonryBrick = styled.div`
     letter-spacing: 0.5px;
   }
   h4 {
+    font-size: 1.15rem;
+    letter-spacing: 0.75px;
     width: 22.5vw;
     display: flex;
     line-height: 18px;
@@ -51,9 +54,9 @@ const MasonryBrick = styled.div`
     width: 22.5vw;
     border-radius: 3px;
     height: 300px;
-    transition: transform ease 200ms;
+    transition: filter ease 300ms;
     &:hover {
-      transform: scale(1.015);
+     
     }
     @media (max-width: 1000px) {
       width: 35vw;
@@ -80,7 +83,7 @@ const FeaturedStories = ({ posts }) => (
     <h4>{posts.body.childMarkdownRemark.excerpt}</h4>
 
     <h4>
-      <Link to={posts.slug}>See More..</Link>
+      <Link to={posts.slug}><strong>See More..</strong></Link>
       <span>{posts.tags.map(({ name, id }) => {
         return <div key={id}><span>{name}</span></div>
       })}</span>
