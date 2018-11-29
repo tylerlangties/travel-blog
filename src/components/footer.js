@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import styled from "styled-components"
+import { ButtonPrimary } from '../styles/buttons';
 
 const FooterStyles = styled.div`
     width: 100vw;
@@ -23,6 +24,9 @@ const FooterStyles = styled.div`
             font-size: 1.5rem;
             width: 60vw;
             text-align: center;
+            @media (max-width: 767px) {
+                width: 90vw;
+            }
         }
     }
     .footer__bottom {
@@ -37,28 +41,30 @@ const FooterStyles = styled.div`
         flex-direction: column;
         h2 {
             color: #15181b;
-            margin-bottom: 3rem;
+            margin-bottom: 3rem auto;
+            @media (max-width: 767px) {
+                width: 75%;
+            }
         }
         input {
-        margin: 5px;
+        margin: 1rem 2.5px 0 0;
+        box-sizing: border-box;
+        width: 250px;
         padding: 15px 32px;
         font-size: 16px;
         display: inline-block;
         text-decoration: none;
         color: #15181b;
-        }
-        .button {
-            background-color: #dd5039; /* RED */
-            border: none;
-            color: white;
+        @media (max-width: 767px) {
+            display: flex;
+            width: 300px;
+            margin: 1rem 0 0;
+            justify-content: center;
+            align-content: space-between;
+            flex-direction: column;
             text-align: center;
-            font-size: 16px;
-            transition: background-color 200ms ease;
-            &:hover {
-                cursor: pointer;
-                background-color: #F57460;
-    }
-}
+        }
+        }
     }
 `;
 
@@ -73,7 +79,7 @@ const Footer = () => (
         <form id="form" className="topBefore">
             <input id="name" type="text" placeholder="NAME"/>
             <input id="email" type="text" placeholder="E-MAIL"/>
-            <input id="submit" className="button" type="submit" value="SUBSCRIBE NOW"/>
+            <ButtonPrimary id="submit" className="button" type="submit"> Subscribe Now</ButtonPrimary>
         </form>
     </div>
   </FooterStyles>

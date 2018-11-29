@@ -29,7 +29,6 @@ const Nav = styled.nav`
   align-items: center;
   i {
     font-size: 3rem;
-    
   }
   .links {
     display: flex;
@@ -47,12 +46,11 @@ const Nav = styled.nav`
 const Header = () => (
     <Wrapper>
       <Nav>
-      <Link to="/"><i className="fas fa-drafting-compass"></i></Link>
+      <Link to="/"><i className="fas fa-drafting-compass">SS</i></Link>
       <div className="links">
           <h2><Link to ="/about">About</Link></h2>
           <h2><Link to="/">Explore</Link></h2>
           </div>
-      
       </Nav>
     </Wrapper>
 )

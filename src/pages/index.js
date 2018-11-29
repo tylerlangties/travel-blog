@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import Layout from '../components/layout'
 import styled from 'styled-components'
-import PostListing from '../components/Posts/PostLosting'
+import PostListing from '../components/Posts/PostListing'
 import FeaturedStories from '../components/Posts/FeaturedStories'
-
+import { ButtonPrimary } from '../styles/buttons';
 
 const Featured = styled.div`
 margin-top: 3rem;
@@ -21,23 +21,8 @@ const Masonry = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  .load-more {
-    background-color: #dd5039; /* RED */
-    border: none;
-    color: white;
-    text-align: center;
-    font-size: 16px;
-    margin: 2.5rem 0 2rem;
-    text-transform: uppercase;
-    padding: 15px 32px;
-    transition: background-color 200ms ease;
-    &:hover {
-      cursor: pointer;
-      background-color: #F57460;
-    }
-  }
-
 `;
+
 
 export default class IndexPage extends Component {
   constructor(props) {
@@ -71,10 +56,9 @@ export default class IndexPage extends Component {
     
     <Featured>
     <h1>Featured Story</h1>
+    <PostListing />
     <hr/>
-    {this.props.data.allContentfulFeaturedPost.edges.map(({node}) => {
-      return <PostListing key={node.id} post={node} />
-    })}
+
     <h1>Recent Stories</h1>
     <hr/>
     </Featured>
@@ -82,11 +66,11 @@ export default class IndexPage extends Component {
     {this.state.items.slice(0, this.state.visible).map((item) => {
       return <FeaturedStories key={item.node.id} posts={item.node} />
     })}
-    {this.state.visible < this.state.items.length &&
-      <button onClick={this.loadMore} type="button" className="load-more">See more</button>
-    }
-    </Masonry>
     
+    </Masonry>
+    {this.state.visible < this.state.items.length &&
+      <ButtonPrimary onClick={this.loadMore} type="button">See more</ButtonPrimary>
+    }
   </Layout>
   )}}
 
@@ -101,10 +85,6 @@ query Featured{
         createdAt(formatString: "MMMM DD, YYYY")
         slug
         readtime
-        location{
-          lon
-          lat
-        }
         featuredImage{
           fluid(maxWidth: 2500){
             src

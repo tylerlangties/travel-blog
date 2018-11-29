@@ -8,6 +8,9 @@ import Footer from './footer';
 
 
 const Main = Styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   margin: 0 auto;
   max-width: 90vw;
   padding: 0px 1.0875rem 1.45rem;
