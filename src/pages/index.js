@@ -36,10 +36,10 @@ export default class IndexPage extends Component {
   <Layout>
     
     <LandingPage>
-      <h1>Featured Story</h1>
+      <h1 className="landingpage__featured-header">Featured Story</h1>
       <HR/>
       <FeaturedListing />
-      <h1>Recent Stories</h1>
+      <h1 className="landingpage__recent-header">Recent Stories</h1>
       <HR/>
       <div className="landingpage__postlist">
         {this.state.items.slice(0, this.state.visible).map((item) => {
@@ -55,7 +55,7 @@ export default class IndexPage extends Component {
 
 export const query = graphql`
 query Featured{
-  allContentfulBlogPost{
+  allContentfulBlogPost (sort: { fields: [createdAt], order: DESC }) {
     edges{
       node{
         id
@@ -75,7 +75,7 @@ query Featured{
           lat
         }
         featuredImage{
-          fluid(maxWidth: 2500){
+          fluid(maxWidth: 2000){
             src
           }
         }

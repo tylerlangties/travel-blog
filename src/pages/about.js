@@ -13,7 +13,12 @@ const Aboutpage = styled.div`
   max-width: 800px;
   font-size: 125%;
   letter-spacing: 1.25px;
+  height: 77.5vh;
+  h1 {
+    font-size: 4rem;
+  }
   h3 {
+    font-size: 1.5rem;
     text-align: center;
     line-height: 2rem;
   }

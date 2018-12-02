@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Layout from '../components/layout';
 import styled from 'styled-components';
 import { HR } from '../styles/horizonalrule';
-import FeaturedListing from '../components/Posts/FeaturedListing'
 import { Link } from 'gatsby';
 
 const PostWrapper = styled.div`
@@ -24,6 +23,9 @@ const PostWrapper = styled.div`
         align-items: center;
         flex-direction: column;
         margin: 1rem 0;
+        &--content {
+            margin-top: 2rem;
+        }
         @media (max-width: 767px) {
         width: 90vw;
         }
@@ -36,10 +38,8 @@ const PostWrapper = styled.div`
             }
         }
     }
-    .bitch {
-        width: 100%;
-        object-fit: cover;
-        position: relative;
+    .postwrapper__home-link {
+        margin: 2.25rem 0 0;
     }
 `;
 
@@ -50,7 +50,6 @@ render() {
     return (
         <Layout>
             <PostWrapper>
-
                 <h1 className="postwrapper__title">
                     {data.contentfulBlogPost.title}
                 </h1>
@@ -62,13 +61,12 @@ render() {
                 
                 <div className="postwrapper__inner">
                 <HR />
-                    <div dangerouslySetInnerHTML = {{
+                    <div className="postwrapper__inner--content" dangerouslySetInnerHTML = {{
                     __html: data.contentfulBlogPost.body.childMarkdownRemark.html
                     }}/>
                     
                 </div>
-                <img className="bitch" src={data.contentfulBlogPost.featuredImage.fluid.src}/>
-                <Link to="/">Go back to the homepage</Link>
+                <Link to="/"><h4 className="postwrapper__home-link">Go back to the homepage</h4></Link>
                 
             </PostWrapper>
             

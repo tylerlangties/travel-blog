@@ -15,6 +15,9 @@ export default () => (
                     id
                     slug
                     readtime
+                    authors {
+                        authorName
+                    }
                     createdAt(formatString: "MMMM DD, YYYY")
                     featuredImage{
                         fluid(maxWidth: 2500){
@@ -42,32 +45,47 @@ export default () => (
 `}
     render={data => (
     <div className="featuredlisting">
-        {data.allContentfulBlogPost.edges.map(({ node }) => {
+        {data.allContentfulBlogPost.edges.map(({ node, id }) => {
         return (
-            <FeaturedListing>
-
+            <FeaturedListing key={id}>
                 <div className="featuredlisting__wrapper">
-                <Link to={node.slug}><h1 className="featuredlisting__title">{node.title}</h1></Link>
-                    <p>
-                        {node.createdAt}
-                    </p>
+                    <Link to={node.slug}>
+                    <h1 className="featuredlisting__title">{node.title}</h1>
+                    </Link>
+                    {node.authors.map(({ authorName, id }) => {
+                        return (
+                            <span key={id}>
+                                <h3 className="featuredlisting__authors">{authorName}</h3>
+                            </span>
+                            )
+                        })}
                     <h3 className="featuredlisting__excerpt">
                         {node.body.childMarkdownRemark.excerpt}
                     </h3>
-
                     <br/>
-
                     <div className="featuredlisting__link">
-                        <Link to={node.slug}>
-                            <h4>See More..</h4>
-                        </Link>
+                        <Link to={node.slug}><strong>See More..</strong></Link>
+                        <span>
+                        {node.tags.map(({ name, id }) => {
+                            return (
+                                <span className="featuredlisting__link--tags" key={id}>
+                                    {name}
+                                </span>
+                            )
+                        })}
+                        </span>
+                    </div>
+                    <div className="featuredlisting__link">
+                        <i>{node.createdAt}</i>
+                        <span className="featuredlisting__link--read-time">
+                            <i className="fas fa-book-open" />
+                            {node.readtime}
+                        </span>
                     </div>
                 </div>
-
                 <div className="featuredlisting__image">
                     <Link to={node.slug}><img src={node.featuredImage.fluid.src}/> </Link>
                 </div>
-
             </FeaturedListing>
             )
         })}
@@ -75,4 +93,3 @@ export default () => (
     )}
 />
 )
-

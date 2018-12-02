@@ -4,6 +4,9 @@ export const LandingPage = styled.div`
 display: flex;
 justify-content: center;
 flex-direction: column;
+.landingpage__featured-header, .landingpage__recent-header {
+    font-size: 3rem;
+}
 @media (max-width: 767px) {
     align-items: center;
 }
@@ -12,5 +15,6 @@ flex-direction: column;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+    
 }
 `;
