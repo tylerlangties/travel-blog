@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Layout from '../components/layout';
 import styled from 'styled-components';
 import { HR } from '../styles/horizonalrule';
+import FeaturedListing from '../components/Posts/FeaturedListing'
 import { Link } from 'gatsby';
 
 const PostWrapper = styled.div`
@@ -70,6 +71,7 @@ render() {
                 <Link to="/">Go back to the homepage</Link>
                 
             </PostWrapper>
+            
             
         </Layout>
         );
