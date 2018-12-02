@@ -47,7 +47,7 @@ export default class IndexPage extends Component {
         })}
       </div>
       {this.state.visible < this.state.items.length &&
-        <ButtonPrimary onClick={this.loadMore} type="button">See more</ButtonPrimary>
+        <ButtonPrimary className="landingpage__load-more" onClick={this.loadMore} type="button">See more</ButtonPrimary>
       }
     </LandingPage>
   </Layout>

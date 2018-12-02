@@ -58,7 +58,7 @@ export const FeaturedListing = styled.div`
             background-color: #dd5039;
         }
             @media (max-width: 767px) {
-            width: 75vw;
+            width: 100%;
             margin: .5rem auto;
         }
         &--read-time {

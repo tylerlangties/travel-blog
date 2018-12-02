@@ -17,4 +17,7 @@ flex-direction: column;
     justify-content: space-around;
     
 }
+.landingpage__load-more {
+    margin: 2.75rem auto 0;
+}
 `;
