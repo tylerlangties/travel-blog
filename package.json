@@ -16,17 +16,14 @@
     "gatsby-source-contentful": "^2.0.3",
     "gatsby-transformer-remark": "^2.1.7",
     "gatsby-transformer-sharp": "^2.1.3",
-    "google-maps-react": "^2.0.2",
     "node-sass": "^4.9.3",
     "react": "^16.5.1",
     "react-dom": "^16.5.1",
     "react-headroom": "^2.2.4",
     "react-helmet": "^5.2.0",
-    "react-here-maps": "^0.4.0",
     "react-typography": "^0.16.13",
     "styled-components": "^3.4.10",
     "typography": "^0.16.17",
-    "typography-theme-wordpress-2011": "^0.15.10",
     "typography-theme-wordpress-kubrick": "^0.15.10"
   },
   "keywords": [

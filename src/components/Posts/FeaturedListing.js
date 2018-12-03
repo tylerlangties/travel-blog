@@ -20,7 +20,7 @@ export default () => (
                     }
                     createdAt(formatString: "MMMM DD, YYYY")
                     featuredImage{
-                        fluid(maxWidth: 2500){
+                        fluid(maxWidth: 1200){
                             src
                         }
                     }
